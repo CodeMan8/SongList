@@ -1,5 +1,5 @@
 //
-//  SongListResultVc.swift
+//  HomeSongVc.swift
 //  SongProject
 //
 //  Created by Bartu on 24.02.2023.
@@ -7,16 +7,18 @@
 
 import UIKit
 
-class SongListResultVc: UIViewController, ButtonActionDelegate {
+class HomeSongVc: UIViewController, ButtonActionDelegate {
 
   @IBOutlet weak var tableView: UITableView!
 
-  var viewModel = SongViewModel()
+  @IBOutlet weak var profileView: CustomProfileView!
+  let viewModel = SongViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     prepareViewModelObserver()
     prepareTableView()
+    fetchSongList()
     hideNavigationBar()
   }
 
@@ -26,12 +28,38 @@ class SongListResultVc: UIViewController, ButtonActionDelegate {
     self.tableView.delegate = self
     self.tableView.dataSource = self
     self.tableView.register(UINib(nibName: "SongTableViewCell", bundle: nil), forCellReuseIdentifier: "SongCell")
+
+  }
+
+  func fetchSongList() {
+    viewModel.fetchSongList()
   }
 
   func prepareViewModelObserver() {
     self.viewModel.dataChanges = { (finished, error) in
       if !error {
         self.tableView.reloadData()
+        self.passData()
+
+      }
+    }
+  }
+  private func passData() {
+    if let secondTab = self.tabBarController?.viewControllers?[1] as? UINavigationController {
+      if let songListResultVc = secondTab.viewControllers.first as? SongListResultVc {
+        songListResultVc.viewModel = self.viewModel
+      }
+    }
+
+    if let thirdTAB = self.tabBarController?.viewControllers?[2] as? UINavigationController {
+      if let songListCollectionVc = thirdTAB.viewControllers.first as? SongListCollectionVc {
+        songListCollectionVc.viewModel = self.viewModel
+      }
+    }
+
+    if let lastTab = self.tabBarController?.viewControllers?[3] as? UINavigationController {
+      if let editableListVc = lastTab.viewControllers.first as? EditableSongVc {
+        editableListVc.viewModel = self.viewModel
       }
     }
   }
@@ -40,16 +68,17 @@ class SongListResultVc: UIViewController, ButtonActionDelegate {
     guard let detailVc = self.storyboard?.instantiateViewController(withIdentifier: "DetailPageVc") as? DetailPageVc else { return }
     detailVc.song = viewModel.songs[sender.tag]
     self.navigationController?.pushViewController(detailVc, animated: true)
+
   }
 
   private func  hideNavigationBar() {
     self.navigationController?.navigationBar.isHidden = true
   }
-
 }
 
+
   // MARK: - UITableView Delegate And Datasource Methods
-extension SongListResultVc: UITableViewDelegate, UITableViewDataSource {
+extension HomeSongVc: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
     return viewModel.songs.count
@@ -64,7 +93,7 @@ extension SongListResultVc: UITableViewDelegate, UITableViewDataSource {
     let song = viewModel.songs[indexPath.row]
     cell.primaryLabel.text = song.artistName
     cell.secondaryLabel.text = song.trackName
-    cell.photoView?.isHidden = true
+    cell.photoView?.image = try? UIImage(data: Data(contentsOf: URL(string: song.artworkUrl100)!))
     cell.configure(delegate: self, tag: indexPath.row)
     return cell
   }
@@ -74,4 +103,5 @@ extension SongListResultVc: UITableViewDelegate, UITableViewDataSource {
     tableView.rowHeight = UITableView.automaticDimension
     return UITableView.automaticDimension
   }
+
 }

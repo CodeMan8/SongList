@@ -12,6 +12,7 @@ class SongCollectionCell: UICollectionViewCell, ButtonActionDelegate {
     self.delegate?.applyButtonPressed(sender)
   }
 
+  @IBOutlet weak var removeButton: UIButton!
 
   @IBOutlet weak var trackLabel: UILabel!
   @IBOutlet weak var profileView: UIImageView!
@@ -31,6 +32,12 @@ class SongCollectionCell: UICollectionViewCell, ButtonActionDelegate {
   override func layoutSubviews() {
     self.layer.borderColor = UIColor.black.cgColor
     self.layer.borderWidth = 3
+  }
+
+  override func preferredLayoutAttributesFitting(_ layoutAttributes: UICollectionViewLayoutAttributes) -> UICollectionViewLayoutAttributes {
+    let targetSize = CGSize(width: layoutAttributes.frame.width, height: 0)
+    layoutAttributes.frame.size = contentView.systemLayoutSizeFitting(targetSize, withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel)
+    return layoutAttributes
   }
 
   public func configure(delegate: ButtonActionDelegate,tag: Int) {

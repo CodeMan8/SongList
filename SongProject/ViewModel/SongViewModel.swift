@@ -26,10 +26,13 @@ class SongViewModel: SongViewModelProtocol {
     }
   }
 
+  var resultNumber: String = ""
+
   func fetchSongList() {
     ApiService.getResults { data in
-      let json = try? JSONDecoder().decode(Song.self, from: data)
+       let json = try? JSONDecoder().decode(Song.self, from: data)
        self.songs = json?.results ?? []
+       self.resultNumber = "\(json?.resultCount ?? .zero) adet sonuç bulundu"
     }
   }
 }

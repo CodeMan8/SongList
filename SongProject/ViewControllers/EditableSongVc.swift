@@ -1,5 +1,5 @@
 //
-//  SongListCollectionVc.swift
+//  EditableSongVc.swift
 //  SongProject
 //
 //  Created by Bartu on 24.02.2023.
@@ -7,21 +7,21 @@
 
 import UIKit
 
-class SongListCollectionVc: UIViewController, ButtonActionDelegate {
+class EditableSongVc: UIViewController, ButtonActionDelegate {
 
-  @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var profileView: CustomProfileView!
+  @IBOutlet weak var collectionView: UICollectionView!
 
   var viewModel = SongViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     prepareViewModelObserver()
-    prepareTableView()
+    prepareCollectionView()
     hideNavigationBar()
   }
 
-  func prepareTableView() {
+  func prepareCollectionView() {
     self.view.backgroundColor = .white
     self.collectionView.delegate = self
     self.collectionView.dataSource = self
@@ -49,7 +49,7 @@ class SongListCollectionVc: UIViewController, ButtonActionDelegate {
 }
 
   // MARK: - UITableView Delegate And Datasource Methods
-extension SongListCollectionVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension EditableSongVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell: SongCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongCell", for: indexPath as IndexPath) as? SongCollectionCell else {
@@ -59,6 +59,10 @@ extension SongListCollectionVc: UICollectionViewDelegate, UICollectionViewDataSo
     let song = viewModel.songs[indexPath.row]
     cell.artistLabel.text = song.artistName
     cell.trackLabel.text = song.trackName
+    cell.priceLabel.text = "\(song.collectionPrice ?? .zero)"
+    cell.releaseLabel.text = song.releaseDate
+    cell.removeButton.isHidden = false
+    cell.profileView?.image = try? UIImage(data: Data(contentsOf: URL(string: song.artworkUrl100)!))
     cell.configure(delegate: self, tag: indexPath.row)
 
     return cell
@@ -70,14 +74,11 @@ extension SongListCollectionVc: UICollectionViewDelegate, UICollectionViewDataSo
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
-    return CGSize(width: self.collectionView.frame.size.width/2 - 5, height: collectionView.frame.size.height)
+    return CGSize(width: self.collectionView.frame.size.width/2 - 5, height: collectionView.frame.size.height - 50)
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-
     return UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
-
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {

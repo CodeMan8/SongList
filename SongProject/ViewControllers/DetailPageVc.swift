@@ -29,7 +29,7 @@ class DetailPageVc: UIViewController {
 
   private func configure(with song: SongResults)  {
     if let  price = song.collectionPrice {
-      priceLabel.text = "price \(price)"
+      priceLabel.text = "price \(price)$"
     }
     else {
       priceLabel.text = "no price"

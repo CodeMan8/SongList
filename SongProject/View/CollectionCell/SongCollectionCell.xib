@@ -12,90 +12,105 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="SongCell" id="gTV-IL-0wX" customClass="SongCollectionCell" customModule="SongProject" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="181" height="140"/>
+            <rect key="frame" x="0.0" y="0.0" width="384" height="466"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="181" height="140"/>
+                <rect key="frame" x="0.0" y="0.0" width="384" height="466"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="d5y-Sc-cpS">
-                        <rect key="frame" x="20" y="0.0" width="141" height="120"/>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YIP-BO-RbD">
+                        <rect key="frame" x="20.000000000000004" y="314.66666666666669" width="41.333333333333343" height="111.33333333333331"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="ZE5-RI-zE3">
-                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="120"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByP-tW-A8j" userLabel="artistLabel">
-                                        <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="11"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP9-Wd-y5V" userLabel="trackLabel">
-                                        <rect key="frame" x="0.0" y="27" width="41.333333333333336" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfL-yf-KBM" userLabel="releaseLabel">
-                                        <rect key="frame" x="0.0" y="63.333333333333336" width="41.333333333333336" height="20.333333333333336"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ok3-k3-fg6" userLabel="priceLabel">
-                                        <rect key="frame" x="0.0" y="99.666666666666671" width="41.333333333333336" height="20.333333333333329"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </stackView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="kGT-fD-HtJ">
-                                <rect key="frame" x="51.333333333333321" y="0.0" width="89.666666666666686" height="120"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="NMW-qA-bkC">
-                                        <rect key="frame" x="0.0" y="0.0" width="89.666666666666671" height="0.0"/>
-                                        <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7L-F1-NmR">
-                                                <rect key="frame" x="0.0" y="0.0" width="50" height="0.0"/>
-                                            </imageView>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-Wl-8ra">
-                                                <rect key="frame" x="60.000000000000007" y="0.0" width="29.666666666666664" height="0.0"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" title="Remove"/>
-                                                <connections>
-                                                    <action selector="removeButtonDidPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="fIh-iN-PBX"/>
-                                                </connections>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jku-ee-zxn" customClass="CustomButton" customModule="SongProject" customModuleProvider="target">
-                                        <rect key="frame" x="39.666666666666671" y="100" width="50" height="20"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                    </view>
-                                </subviews>
-                            </stackView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ByP-tW-A8j" userLabel="artistLabel">
+                                <rect key="frame" x="0.0" y="0.0" width="41.333333333333336" height="20.333333333333332"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QP9-Wd-y5V" userLabel="trackLabel">
+                                <rect key="frame" x="0.0" y="30.333333333333314" width="41.333333333333336" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xfL-yf-KBM" userLabel="releaseLabel">
+                                <rect key="frame" x="0.0" y="60.666666666666629" width="41.333333333333336" height="20.333333333333336"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ok3-k3-fg6" userLabel="priceLabel">
+                                <rect key="frame" x="0.0" y="91" width="41.333333333333336" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                     </stackView>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="i7L-F1-NmR">
+                        <rect key="frame" x="59.999999999999986" y="26.000000000000007" width="228.66666666666663" height="111.66666666666669"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="111.67" id="sD7-Jg-f1k"/>
+                        </constraints>
+                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kpg-n3-R7I">
+                        <rect key="frame" x="279" y="401" width="85" height="45"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jku-ee-zxn" customClass="CustomButton" customModule="SongProject" customModuleProvider="target">
+                                <rect key="frame" x="20" y="0.0" width="45" height="45"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="45" id="nZd-y0-GZR"/>
+                                    <constraint firstAttribute="height" constant="45" id="rPY-VJ-4Ga"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="jku-ee-zxn" firstAttribute="leading" secondItem="Kpg-n3-R7I" secondAttribute="leading" constant="20" id="BNb-nc-AQJ"/>
+                            <constraint firstAttribute="bottom" secondItem="jku-ee-zxn" secondAttribute="bottom" id="RlS-3O-BqS"/>
+                            <constraint firstItem="jku-ee-zxn" firstAttribute="centerX" secondItem="Kpg-n3-R7I" secondAttribute="centerX" id="mzz-04-fvu"/>
+                            <constraint firstItem="jku-ee-zxn" firstAttribute="top" secondItem="Kpg-n3-R7I" secondAttribute="top" id="wA4-oH-5cK"/>
+                        </constraints>
+                    </view>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFq-Wl-8ra">
+                        <rect key="frame" x="288.66666666666669" y="26.000000000000004" width="85.333333333333314" height="34.333333333333343"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="34.329999999999998" id="dOs-V1-mO2"/>
+                            <constraint firstAttribute="width" constant="85.329999999999998" id="j7M-S9-pMo"/>
+                        </constraints>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Remove"/>
+                        <connections>
+                            <action selector="removeButtonDidPressed:" destination="gTV-IL-0wX" eventType="touchUpInside" id="fIh-iN-PBX"/>
+                        </connections>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="d5y-Sc-cpS" secondAttribute="trailing" constant="20" id="N2j-OG-VCa"/>
-                <constraint firstItem="d5y-Sc-cpS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="Vb4-LA-VYb"/>
-                <constraint firstAttribute="bottom" secondItem="d5y-Sc-cpS" secondAttribute="bottom" constant="20" id="Xtl-6I-pu7"/>
-                <constraint firstItem="d5y-Sc-cpS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="nv4-cx-ddq"/>
+                <constraint firstAttribute="trailing" secondItem="Kpg-n3-R7I" secondAttribute="trailing" constant="20" id="6dc-ki-gDk"/>
+                <constraint firstAttribute="trailing" secondItem="ZFq-Wl-8ra" secondAttribute="trailing" constant="10" id="8BQ-qA-koV"/>
+                <constraint firstItem="i7L-F1-NmR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="26" id="GRO-Ig-w3S"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" relation="lessThanOrEqual" secondItem="YIP-BO-RbD" secondAttribute="bottom" priority="999" constant="40" id="ILa-xP-wCt"/>
+                <constraint firstItem="ZFq-Wl-8ra" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="26" id="YCA-x4-Qf0"/>
+                <constraint firstAttribute="bottom" secondItem="Kpg-n3-R7I" secondAttribute="bottom" constant="20" id="aEZ-Pw-yEP"/>
+                <constraint firstItem="ZFq-Wl-8ra" firstAttribute="leading" secondItem="i7L-F1-NmR" secondAttribute="trailing" id="dSw-LO-289"/>
+                <constraint firstItem="YIP-BO-RbD" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="20" id="eda-iS-b9L"/>
+                <constraint firstItem="i7L-F1-NmR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="60" id="fme-No-per"/>
+                <constraint firstItem="YIP-BO-RbD" firstAttribute="top" relation="lessThanOrEqual" secondItem="i7L-F1-NmR" secondAttribute="bottom" priority="100" constant="41" id="wmL-HU-jmH"/>
             </constraints>
-            <size key="customSize" width="181" height="140"/>
+            <size key="customSize" width="384" height="466"/>
             <connections>
                 <outlet property="artistLabel" destination="ByP-tW-A8j" id="2xk-wE-8TL"/>
                 <outlet property="customButton" destination="jku-ee-zxn" id="jgn-s0-FhH"/>
                 <outlet property="priceLabel" destination="ok3-k3-fg6" id="EOS-7S-ATP"/>
                 <outlet property="profileView" destination="i7L-F1-NmR" id="XD6-7L-Vop"/>
                 <outlet property="releaseLabel" destination="xfL-yf-KBM" id="w6d-EM-zRs"/>
+                <outlet property="removeButton" destination="ZFq-Wl-8ra" id="arx-lF-gJs"/>
                 <outlet property="trackLabel" destination="QP9-Wd-y5V" id="Vrr-ga-3tC"/>
             </connections>
-            <point key="canvasLocation" x="140.76923076923077" y="-44.075829383886251"/>
+            <point key="canvasLocation" x="295.38461538461536" y="-20.616113744075829"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -1,5 +1,5 @@
 //
-//  EditableSongVc.swift
+//  SongListCollectionVc.swift
 //  SongProject
 //
 //  Created by Bartu on 24.02.2023.
@@ -7,25 +7,26 @@
 
 import UIKit
 
-class EditableSongVc: UIViewController, ButtonActionDelegate {
+class SongListCollectionVc: UIViewController, ButtonActionDelegate {
 
-  @IBOutlet weak var profileView: CustomProfileView!
   @IBOutlet weak var collectionView: UICollectionView!
+  @IBOutlet weak var profileView: CustomProfileView!
 
   var viewModel = SongViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     prepareViewModelObserver()
-    prepareTableView()
+    prepareCollectionView()
     hideNavigationBar()
   }
 
-  func prepareTableView() {
+  func prepareCollectionView() {
     self.view.backgroundColor = .white
     self.collectionView.delegate = self
     self.collectionView.dataSource = self
-    self.collectionView.register(UINib(nibName: "SongCollectionCell", bundle: nil), forCellWithReuseIdentifier: "SongCell")
+    self.collectionView.register(UINib(nibName: "SongCardCell", bundle: nil), forCellWithReuseIdentifier: "SongCardCell")
+
   }
 
   func prepareViewModelObserver() {
@@ -49,14 +50,15 @@ class EditableSongVc: UIViewController, ButtonActionDelegate {
 }
 
   // MARK: - UITableView Delegate And Datasource Methods
-extension EditableSongVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension SongListCollectionVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    guard let cell: SongCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongCell", for: indexPath as IndexPath) as? SongCollectionCell else {
-      fatalError("SongCell cell is not found")
+    guard let cell: SongCardCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongCardCell", for: indexPath as IndexPath) as? SongCardCell else {
+      fatalError("SongCardCell cell is not found")
     }
 
     let song = viewModel.songs[indexPath.row]
+    
     cell.artistLabel.text = song.artistName
     cell.trackLabel.text = song.trackName
     cell.configure(delegate: self, tag: indexPath.row)
@@ -69,21 +71,16 @@ extension EditableSongVc: UICollectionViewDelegate, UICollectionViewDataSource, 
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-
-
-    return CGSize(width: self.collectionView.frame.size.width/2 - 5, height: collectionView.frame.size.height/2 - 5)
-
+    let size = collectionView.frame.size.height
+    return CGSize(width: self.collectionView.frame.size.width/2 - 5, height: size / 2 - 50)
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
-
-
     return UIEdgeInsets(top: 0, left: 3, bottom: 0, right: 3)
-
   }
 
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-    return 0
+    return 7
   }
   func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
     return 7
