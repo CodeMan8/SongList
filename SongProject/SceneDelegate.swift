@@ -2,7 +2,7 @@
 //  SceneDelegate.swift
 //  SongProject
 //
-//  Created by betbull on 24.02.2023.
+//  Created by Bartu on 24.02.2023.
 //
 
 import UIKit
