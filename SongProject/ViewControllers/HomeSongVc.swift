@@ -68,7 +68,7 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
 
   func applyButtonPressed(_ sender: UIButton) {
     guard let detailVc = self.storyboard?.instantiateViewController(withIdentifier: "DetailPageVc") as? DetailPageVc else { return }
-    detailVc.song = viewModel.songs[sender.tag]
+    detailVc.song = viewModel.firstPageSong[sender.tag]
     self.navigationController?.pushViewController(detailVc, animated: true)
 
   }
@@ -78,13 +78,20 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
   }
 
   @objc public  func removedItem(notification: NSNotification) {
-    if let indexPath = notification.object as? IndexPath {
-      remove(with: indexPath)
+    if let song = notification.object as? SongResults {
+      remove(with: song)
     }
   }
 
-  private func remove(with indexPath: IndexPath) {
-    self.viewModel.songs.remove(at: indexPath.item)
+  private func remove(with item: SongResults) {
+    if let index = self.viewModel.firstPageSong.firstIndex(where: {$0.trackId == item.trackId}) {
+      self.viewModel.firstPageSong.remove(at: index)
+
+    }
+
+    if let index = self.viewModel.Allsongs.firstIndex(where: {$0.trackId == item.trackId}) {
+      self.viewModel.Allsongs.remove(at: index)
+    }
   }
 }
 
@@ -93,7 +100,7 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
 extension HomeSongVc: UITableViewDelegate, UITableViewDataSource {
 
   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    return viewModel.songs.count
+    return viewModel.firstPageSong.count
   }
 
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +109,7 @@ extension HomeSongVc: UITableViewDelegate, UITableViewDataSource {
       fatalError("SongCell cell is not found")
     }
 
-    let song = viewModel.songs[indexPath.row]
+    let song = viewModel.firstPageSong[indexPath.row]
     cell.primaryLabel.text = song.artistName
     cell.secondaryLabel.text = song.trackName
     cell.photoView?.image = try? UIImage(data: Data(contentsOf: URL(string: song.artworkUrl100)!))

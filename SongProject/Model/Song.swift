@@ -31,6 +31,7 @@ class SongResults: Codable {
   let collectionName: String?
   let collectionPrice: Double?
   let releaseDate: String?
+  let trackId: Int?
 
   required public init(from decoder :Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
@@ -40,6 +41,7 @@ class SongResults: Codable {
     collectionName = try values.decodeIfPresent(String.self, forKey: .collectionName)
     collectionPrice = try values.decodeIfPresent(Double.self, forKey: .collectionPrice)
     releaseDate = try values.decode(String.self, forKey: .releaseDate)
+    trackId = try values.decodeIfPresent(Int.self, forKey: .trackId)
   }
 
   enum CodingKeys: String, CodingKey {
@@ -49,6 +51,7 @@ class SongResults: Codable {
     case collectionName = "collectionName"
     case collectionPrice = "collectionPrice"
     case releaseDate = "releaseDate"
+    case trackId = "trackId"
 
   }
 }

@@ -13,9 +13,11 @@ class SecondViewModel {
   var songs: [SongResults] = [] {
     didSet {
       self.dataChanges!(true, false)
+      updateResultNumberText()
     }
   }
   var resultNumber: String = ""
+  var resultNumberText: String = ""
 
 
   var results: [SongResults] = []
@@ -23,6 +25,10 @@ class SecondViewModel {
   func songlistData(songs: [SongResults], resultNumber: String) {
     self.results = songs
     self.resultNumber = resultNumber
+  }
+
+  func updateResultNumberText() {
+    self.resultNumberText = "\(self.songs.count) adet sonuç bulundu"
   }
 
 }

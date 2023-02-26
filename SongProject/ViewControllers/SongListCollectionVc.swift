@@ -52,16 +52,19 @@ class SongListCollectionVc: UIViewController, ButtonActionDelegate {
   }
 
   @objc public  func removedItem(notification: NSNotification) {
-    if let indexPath = notification.object as? IndexPath {
-      remove(with: indexPath)
+    if let results = notification.object as? SongResults {
+      remove(with: results)
     }
   }
 
-  private func remove(with indexPath: IndexPath) {
-    self.viewModel.songs.remove(at: indexPath.item)
-    self.collectionView.performBatchUpdates({
-      self.collectionView.deleteItems(at: [indexPath])
-    })
+  private func remove(with item: SongResults) {
+    if let index = self.viewModel.songs.firstIndex(where: {$0.trackId == item.trackId}) {
+      self.viewModel.songs.remove(at: index)
+      let indexPath = IndexPath(item: index, section: 0)
+      self.collectionView.performBatchUpdates({
+        self.collectionView.deleteItems(at: [indexPath])
+      })
+    }
   }
 }
 
@@ -73,11 +76,11 @@ extension SongListCollectionVc: UICollectionViewDelegate, UICollectionViewDataSo
       fatalError("SongCardCell cell is not found")
     }
 
-    let song = viewModel.songs[indexPath.row]
+    let song = viewModel.songs[indexPath.item]
     
     cell.artistLabel.text = song.artistName
     cell.trackLabel.text = song.trackName
-    cell.configure(delegate: self, tag: indexPath.row)
+    cell.configure(delegate: self, tag: indexPath.item)
 
     return cell
 

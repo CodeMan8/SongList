@@ -38,8 +38,8 @@ class EditableSongVc: UIViewController, ButtonActionDelegate {
     self.navigationController?.navigationBar.isHidden = true
   }
 
-  private func sendUpdateOtherViews(with indexPath: IndexPath) {
-    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removedItem"), object: indexPath)
+  private func sendUpdateOtherViews(with results: SongResults) {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removedItem"), object: results)
   }
 
   private func removeSelectedItem(indexPath: IndexPath) {
@@ -51,13 +51,12 @@ class EditableSongVc: UIViewController, ButtonActionDelegate {
 
       } else {
       }
-      self.viewModel.songs.remove(at: indexPath.item)
+      let removingSong =  self.viewModel.songs.remove(at: indexPath.item)
       self.viewModel.updateData()
       self.collectionView.performBatchUpdates({
         self.collectionView.deleteItems(at: [indexPath])
       })
-      self.sendUpdateOtherViews(with: indexPath)
-      self.viewModel.hideActivityIndicator()
+      self.sendUpdateOtherViews(with: removingSong)
     }
     alert.addAction(yesAction)
     alert.addAction(UIAlertAction(title: "Cancel", style: .cancel){ _ in
@@ -90,14 +89,14 @@ extension EditableSongVc: UICollectionViewDelegate, UICollectionViewDataSource, 
       self.viewModel.showActivityIndicator(view: self.view)
     }
 
-    let song = viewModel.songs[indexPath.row]
+    let song = viewModel.songs[indexPath.item]
     cell.artistLabel.text = song.artistName
     cell.trackLabel.text = song.trackName
     cell.priceLabel.text = "\(song.collectionPrice ?? .zero)"
     cell.releaseLabel.text = song.releaseDate
     cell.removeButton.isHidden = false
     cell.profileView?.image = try? UIImage(data: Data(contentsOf: URL(string: song.artworkUrl100)!))
-    cell.configure(delegate: self, tag: indexPath.row)
+    cell.configure(delegate: self, tag: indexPath.item)
 
     return cell
 

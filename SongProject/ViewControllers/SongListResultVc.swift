@@ -25,7 +25,7 @@ class SongListResultVc: UIViewController, ButtonActionDelegate {
   }
 
   override func viewWillAppear(_ animated: Bool) {
-    self.resultLabel.text = self.viewModel.resultNumber
+    self.resultLabel.text = viewModel.resultNumberText
     super.viewWillAppear(animated)
   }
 
@@ -56,13 +56,15 @@ class SongListResultVc: UIViewController, ButtonActionDelegate {
   }
 
   @objc public  func removedItem(notification: NSNotification) {
-    if let indexPath = notification.object as? IndexPath {
-      remove(with: indexPath)
+    if let song = notification.object as? SongResults {
+      remove(with: song)
     }
   }
 
-  private func remove(with indexPath: IndexPath) {
-    self.viewModel.songs.remove(at: indexPath.item)
+  private func remove(with item: SongResults) {
+    if let index = self.viewModel.songs.firstIndex(where: {$0.trackId == item.trackId}) {
+      self.viewModel.songs.remove(at: index)
+    }
   }
 
 }

@@ -16,20 +16,23 @@ protocol SongViewModelProtocol {
 
 class SongViewModel: SongViewModelProtocol {
 
-    //MARK: - Internal Propertiesd
+    //MARK: - Internal Properties
 
   var dataChanges: ((Bool, Bool) -> Void)?
 
-  var songs: [SongResults] = [] {
+  var firstPageSong: [SongResults] = [] {
     didSet {
       self.dataChanges!(true, false)
     }
   }
 
-  var Allsongs: [SongResults] = []
+  var Allsongs: [SongResults] = []{
+    didSet {
+      self.dataChanges!(true, false)
+    }
+  }
 
   var activityView: UIActivityIndicatorView?
-
   var resultNumber: String = ""
   var resultCount: Int = 0
 
@@ -41,7 +44,6 @@ class SongViewModel: SongViewModelProtocol {
        self.Allsongs = json?.results ?? []
        self.resultCount = json?.resultCount ?? .zero
        self.resultNumber = "\(json?.resultCount ?? .zero) adet sonuç bulundu"
-       self.dataChanges!(true, false)
     }
   }
 
@@ -49,12 +51,7 @@ class SongViewModel: SongViewModelProtocol {
   func fetchSongPage() {
     ApiService.getResultsWithParams(offset: offset, completion: { data in
       let json = try? JSONDecoder().decode(Song.self, from: data)
-      print("songs")
-      print(self.songs.count)
-      print("offset")
-      print(self.offset)
-      self.songs.append(contentsOf: json?.results ?? [])
-      self.dataChanges!(true, false)
+      self.firstPageSong.append(contentsOf: json?.results ?? [])
     })
   }
 
@@ -64,6 +61,6 @@ class SongViewModel: SongViewModelProtocol {
   }
 
   func isLastItem(row: Int)  -> Bool {
-    return row == self.songs.count - 1
+    return row == self.firstPageSong.count - 1
   }
 }
