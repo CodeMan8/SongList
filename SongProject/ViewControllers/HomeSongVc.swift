@@ -18,8 +18,9 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
     super.viewDidLoad()
     prepareViewModelObserver()
     prepareTableView()
-    fetchSongList()
+    fetchSongPage()
     hideNavigationBar()
+    NotificationCenter.default.addObserver(self, selector: #selector(self.removedItem), name: NSNotification.Name(rawValue: "removedItem"), object: nil)
   }
 
   func prepareTableView() {
@@ -31,8 +32,9 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
 
   }
 
-  func fetchSongList() {
+  func fetchSongPage() {
     viewModel.fetchSongList()
+    viewModel.fetchSongPage()
   }
 
   func prepareViewModelObserver() {
@@ -47,19 +49,19 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
   private func passData() {
     if let secondTab = self.tabBarController?.viewControllers?[1] as? UINavigationController {
       if let songListResultVc = secondTab.viewControllers.first as? SongListResultVc {
-        songListResultVc.viewModel = self.viewModel
+        songListResultVc.viewModel.songlistData(songs: self.viewModel.Allsongs, resultNumber: self.viewModel.resultNumber)
       }
     }
 
     if let thirdTAB = self.tabBarController?.viewControllers?[2] as? UINavigationController {
       if let songListCollectionVc = thirdTAB.viewControllers.first as? SongListCollectionVc {
-        songListCollectionVc.viewModel = self.viewModel
+        songListCollectionVc.viewModel.songlistData(songs: self.viewModel.Allsongs)
       }
     }
 
     if let lastTab = self.tabBarController?.viewControllers?[3] as? UINavigationController {
       if let editableListVc = lastTab.viewControllers.first as? EditableSongVc {
-        editableListVc.viewModel = self.viewModel
+        editableListVc.viewModel.songs = self.viewModel.Allsongs
       }
     }
   }
@@ -73,6 +75,16 @@ class HomeSongVc: UIViewController, ButtonActionDelegate {
 
   private func  hideNavigationBar() {
     self.navigationController?.navigationBar.isHidden = true
+  }
+
+  @objc public  func removedItem(notification: NSNotification) {
+    if let indexPath = notification.object as? IndexPath {
+      remove(with: indexPath)
+    }
+  }
+
+  private func remove(with indexPath: IndexPath) {
+    self.viewModel.songs.remove(at: indexPath.item)
   }
 }
 
@@ -96,6 +108,14 @@ extension HomeSongVc: UITableViewDelegate, UITableViewDataSource {
     cell.photoView?.image = try? UIImage(data: Data(contentsOf: URL(string: song.artworkUrl100)!))
     cell.configure(delegate: self, tag: indexPath.row)
     return cell
+  }
+
+  func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    if viewModel.isLastItem(row: indexPath.row) {
+      if viewModel.offset < viewModel.resultCount {
+        viewModel.increasePage()
+      }
+    }
   }
 
   func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

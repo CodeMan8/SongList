@@ -12,13 +12,17 @@ class SongListCollectionVc: UIViewController, ButtonActionDelegate {
   @IBOutlet weak var collectionView: UICollectionView!
   @IBOutlet weak var profileView: CustomProfileView!
 
-  var viewModel = SongViewModel()
+  var viewModel = ThirdViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     prepareViewModelObserver()
     prepareCollectionView()
     hideNavigationBar()
+    viewModel.songs = viewModel.results
+    self.navigationController?.navigationBar.isHidden = true
+    NotificationCenter.default.addObserver(self, selector: #selector(self.removedItem), name: NSNotification.Name(rawValue: "removedItem"), object: nil)
+
   }
 
   func prepareCollectionView() {
@@ -27,14 +31,6 @@ class SongListCollectionVc: UIViewController, ButtonActionDelegate {
     self.collectionView.dataSource = self
     self.collectionView.register(UINib(nibName: "SongCardCell", bundle: nil), forCellWithReuseIdentifier: "SongCardCell")
 
-  }
-
-  func prepareViewModelObserver() {
-    self.viewModel.dataChanges = { (finished, error) in
-      if !error {
-        self.collectionView.reloadData()
-      }
-    }
   }
 
   func applyButtonPressed(_ sender: UIButton) {
@@ -47,6 +43,26 @@ class SongListCollectionVc: UIViewController, ButtonActionDelegate {
     self.navigationController?.navigationBar.isHidden = true
   }
 
+  func prepareViewModelObserver() {
+    self.viewModel.dataChanges = { (finished, error) in
+      if !error {
+        self.collectionView.reloadData()
+      }
+    }
+  }
+
+  @objc public  func removedItem(notification: NSNotification) {
+    if let indexPath = notification.object as? IndexPath {
+      remove(with: indexPath)
+    }
+  }
+
+  private func remove(with indexPath: IndexPath) {
+    self.viewModel.songs.remove(at: indexPath.item)
+    self.collectionView.performBatchUpdates({
+      self.collectionView.deleteItems(at: [indexPath])
+    })
+  }
 }
 
   // MARK: - UITableView Delegate And Datasource Methods

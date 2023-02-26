@@ -28,4 +28,16 @@ class ApiService {
       }
   }
 
+  static func getResultsWithParams(offset: Int, completion: @escaping Callback<Data>) {
+    let params = ["offset": offset,"limit": 20] as [String : Any]
+
+    AF.request(Constants.API,parameters: params)
+      .response { response in
+        completion(response.data!)
+        if response.error != nil {
+          print(response.error!)
+        }
+      }
+  }
+
 }

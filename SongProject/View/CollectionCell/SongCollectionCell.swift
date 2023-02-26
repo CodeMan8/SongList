@@ -22,6 +22,7 @@ class SongCollectionCell: UICollectionViewCell, ButtonActionDelegate {
 
   @IBOutlet weak var customButton: CustomButton!
 
+  var removeCell: (() -> Void)?
   var delegate:ButtonActionDelegate?
 
   override func awakeFromNib() {
@@ -46,6 +47,6 @@ class SongCollectionCell: UICollectionViewCell, ButtonActionDelegate {
   }
 
   @IBAction func removeButtonDidPressed(_ sender: UIButton) {
-
+    removeCell?()
   }
 }

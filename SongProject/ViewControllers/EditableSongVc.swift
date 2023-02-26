@@ -12,7 +12,7 @@ class EditableSongVc: UIViewController, ButtonActionDelegate {
   @IBOutlet weak var profileView: CustomProfileView!
   @IBOutlet weak var collectionView: UICollectionView!
 
-  var viewModel = SongViewModel()
+  var viewModel = LastViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
@@ -28,6 +28,44 @@ class EditableSongVc: UIViewController, ButtonActionDelegate {
     self.collectionView.register(UINib(nibName: "SongCollectionCell", bundle: nil), forCellWithReuseIdentifier: "SongCell")
   }
 
+  func applyButtonPressed(_ sender: UIButton) {
+    guard let detailVc = self.storyboard?.instantiateViewController(withIdentifier: "DetailPageVc") as? DetailPageVc else { return }
+    detailVc.song = viewModel.songs[sender.tag]
+    self.navigationController?.pushViewController(detailVc, animated: true)
+  }
+
+  private func hideNavigationBar() {
+    self.navigationController?.navigationBar.isHidden = true
+  }
+
+  private func sendUpdateOtherViews(with indexPath: IndexPath) {
+    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "removedItem"), object: indexPath)
+  }
+
+  private func removeSelectedItem(indexPath: IndexPath) {
+
+    let alert = UIAlertController(title: nil, message: "Are you sure you'd like to delete this cell", preferredStyle: .alert)
+
+    let yesAction = UIAlertAction(title: "Yes", style: .default) { _ in
+      if self.viewModel.songs.count == indexPath.item {
+
+      } else {
+      }
+      self.viewModel.songs.remove(at: indexPath.item)
+      self.viewModel.updateData()
+      self.collectionView.performBatchUpdates({
+        self.collectionView.deleteItems(at: [indexPath])
+      })
+      self.sendUpdateOtherViews(with: indexPath)
+      self.viewModel.hideActivityIndicator()
+    }
+    alert.addAction(yesAction)
+    alert.addAction(UIAlertAction(title: "Cancel", style: .cancel){ _ in
+      self.viewModel.hideActivityIndicator()
+    })
+    present(alert, animated: true, completion: nil)
+  }
+
   func prepareViewModelObserver() {
     self.viewModel.dataChanges = { (finished, error) in
       if !error {
@@ -36,15 +74,6 @@ class EditableSongVc: UIViewController, ButtonActionDelegate {
     }
   }
 
-  func applyButtonPressed(_ sender: UIButton) {
-    guard let detailVc = self.storyboard?.instantiateViewController(withIdentifier: "DetailPageVc") as? DetailPageVc else { return }
-    detailVc.song = viewModel.songs[sender.tag]
-    self.navigationController?.pushViewController(detailVc, animated: true)
-  }
-
-  private func  hideNavigationBar() {
-    self.navigationController?.navigationBar.isHidden = true
-  }
 
 }
 
@@ -54,6 +83,11 @@ extension EditableSongVc: UICollectionViewDelegate, UICollectionViewDataSource, 
   func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     guard let cell: SongCollectionCell = collectionView.dequeueReusableCell(withReuseIdentifier: "SongCell", for: indexPath as IndexPath) as? SongCollectionCell else {
       fatalError("SongCell cell is not found")
+    }
+    cell.removeCell = { [weak self] in
+      guard let self = self else { return }
+      self.removeSelectedItem(indexPath: indexPath)
+      self.viewModel.showActivityIndicator(view: self.view)
     }
 
     let song = viewModel.songs[indexPath.row]

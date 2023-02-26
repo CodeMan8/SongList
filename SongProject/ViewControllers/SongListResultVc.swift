@@ -13,13 +13,15 @@ class SongListResultVc: UIViewController, ButtonActionDelegate {
   @IBOutlet weak var resultLabel: UILabel!
 
   @IBOutlet weak var profileView: CustomProfileView!
-  var viewModel = SongViewModel()
+  var viewModel = SecondViewModel()
 
   override func viewDidLoad() {
     super.viewDidLoad()
     prepareViewModelObserver()
     prepareTableView()
     hideNavigationBar()
+    NotificationCenter.default.addObserver(self, selector: #selector(self.removedItem), name: NSNotification.Name(rawValue: "removedItem"), object: nil)
+    viewModel.songs = viewModel.results
   }
 
   override func viewWillAppear(_ animated: Bool) {
@@ -51,6 +53,16 @@ class SongListResultVc: UIViewController, ButtonActionDelegate {
 
   private func  hideNavigationBar() {
     self.navigationController?.navigationBar.isHidden = true
+  }
+
+  @objc public  func removedItem(notification: NSNotification) {
+    if let indexPath = notification.object as? IndexPath {
+      remove(with: indexPath)
+    }
+  }
+
+  private func remove(with indexPath: IndexPath) {
+    self.viewModel.songs.remove(at: indexPath.item)
   }
 
 }

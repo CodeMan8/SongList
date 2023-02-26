@@ -31,6 +31,9 @@
 		D87ED4B829A9F6CC00B2EED1 /* CustomProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87ED4B729A9F6CC00B2EED1 /* CustomProfileView.swift */; };
 		D87ED4BB29A9F74600B2EED1 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87ED4BA29A9F74600B2EED1 /* CustomButton.swift */; };
 		D87ED4BD29A9F77E00B2EED1 /* CustomButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = D87ED4BC29A9F77E00B2EED1 /* CustomButton.xib */; };
+		D8B6F21229AB719600EC1934 /* SecondViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6F21129AB719600EC1934 /* SecondViewModel.swift */; };
+		D8B6F21429AB71A000EC1934 /* ThirdViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6F21329AB71A000EC1934 /* ThirdViewModel.swift */; };
+		D8B6F21629AB71A900EC1934 /* LastViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8B6F21529AB71A900EC1934 /* LastViewModel.swift */; };
 		D8BFC8B229AA5DC8001D69E0 /* SongCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D8BFC8B029AA5DC8001D69E0 /* SongCollectionCell.swift */; };
 		D8BFC8B329AA5DC8001D69E0 /* SongCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D8BFC8B129AA5DC8001D69E0 /* SongCollectionCell.xib */; };
 /* End PBXBuildFile section */
@@ -64,6 +67,9 @@
 		D87ED4B729A9F6CC00B2EED1 /* CustomProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileView.swift; sourceTree = "<group>"; };
 		D87ED4BA29A9F74600B2EED1 /* CustomButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
 		D87ED4BC29A9F77E00B2EED1 /* CustomButton.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomButton.xib; sourceTree = "<group>"; };
+		D8B6F21129AB719600EC1934 /* SecondViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewModel.swift; sourceTree = "<group>"; };
+		D8B6F21329AB71A000EC1934 /* ThirdViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdViewModel.swift; sourceTree = "<group>"; };
+		D8B6F21529AB71A900EC1934 /* LastViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LastViewModel.swift; sourceTree = "<group>"; };
 		D8BFC8B029AA5DC8001D69E0 /* SongCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongCollectionCell.swift; sourceTree = "<group>"; };
 		D8BFC8B129AA5DC8001D69E0 /* SongCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongCollectionCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -148,6 +154,9 @@
 			isa = PBXGroup;
 			children = (
 				D855374B29A9174C00333E09 /* SongViewModel.swift */,
+				D8B6F21129AB719600EC1934 /* SecondViewModel.swift */,
+				D8B6F21329AB71A000EC1934 /* ThirdViewModel.swift */,
+				D8B6F21529AB71A900EC1934 /* LastViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -346,10 +355,12 @@
 				D87ED4B629A9F1E900B2EED1 /* UIViewExtension.swift in Sources */,
 				D855374A29A913D400333E09 /* SongListCollectionVc.swift in Sources */,
 				D843BC3929AAB9890015B402 /* SongCardCell.swift in Sources */,
+				D8B6F21629AB71A900EC1934 /* LastViewModel.swift in Sources */,
 				D87ED4B829A9F6CC00B2EED1 /* CustomProfileView.swift in Sources */,
 				D8BFC8B229AA5DC8001D69E0 /* SongCollectionCell.swift in Sources */,
 				D81600F229A902080077F52D /* HomeSongVc.swift in Sources */,
 				D855375229A947F000333E09 /* Song.swift in Sources */,
+				D8B6F21229AB719600EC1934 /* SecondViewModel.swift in Sources */,
 				D855375029A943C800333E09 /* DetailPageVc.swift in Sources */,
 				D855374429A911B200333E09 /* TabBarController.swift in Sources */,
 				D855374E29A91FD300333E09 /* ApiService.swift in Sources */,
@@ -357,6 +368,7 @@
 				D81600EE29A902080077F52D /* AppDelegate.swift in Sources */,
 				D81600F029A902080077F52D /* SceneDelegate.swift in Sources */,
 				D87ED4BB29A9F74600B2EED1 /* CustomButton.swift in Sources */,
+				D8B6F21429AB71A000EC1934 /* ThirdViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
