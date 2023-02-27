@@ -91,7 +91,6 @@ extension SongListCollectionVc: UICollectionViewDelegate, UICollectionViewDataSo
   }
   
   public func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-    let size = collectionView.frame.size.height
     return CGSize(width: viewModel.getCellWidth(view: self.collectionView), height: viewModel.getCellHeight(view: self.collectionView))
   }
   
