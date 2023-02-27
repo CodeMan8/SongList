@@ -14,53 +14,62 @@ protocol SongViewModelProtocol {
   func fetchSongList()
 }
 
-class SongViewModel: SongViewModelProtocol {
+public class SongViewModel: SongViewModelProtocol {
 
-    //MARK: - Internal Properties
+    //MARK: - Properties
 
-  var dataChanges: ((Bool, Bool) -> Void)?
+  public var dataChanges: ((Bool, Bool) -> Void)?
 
-  var firstPageSong: [SongResults] = [] {
+  public var firstPageResults: [SongResults] = [] {
     didSet {
       self.dataChanges!(true, false)
     }
   }
 
-  var Allsongs: [SongResults] = []{
+  public var otherResults: [SongResults] = []{
     didSet {
       self.dataChanges!(true, false)
     }
   }
 
-  var activityView: UIActivityIndicatorView?
-  var resultNumber: String = ""
-  var resultCount: Int = 0
+  public var activityView: UIActivityIndicatorView?
+  public var resultNumber: String = ""
+  public var resultCount: Int = 0
+  public var offset: Int = 0
 
-  var offset: Int = 0
-
-  func fetchSongList() {
-    ApiService.getResults { data in
+  public func fetchSongList() {
+    ApiService.getResults { [weak self] data in
+       guard let self = self else { return }
        let json = try? JSONDecoder().decode(Song.self, from: data)
-       self.Allsongs = json?.results ?? []
+       self.otherResults = json?.results ?? []
        self.resultCount = json?.resultCount ?? .zero
        self.resultNumber = "\(json?.resultCount ?? .zero) adet sonuç bulundu"
     }
   }
 
-
-  func fetchSongPage() {
-    ApiService.getResultsWithParams(offset: offset, completion: { data in
+  public func fetchSongPage() {
+    ApiService.getResultsWithParams(offset: offset, completion: { [weak self] data in
+      guard let self = self else { return }
       let json = try? JSONDecoder().decode(Song.self, from: data)
-      self.firstPageSong.append(contentsOf: json?.results ?? [])
+      self.firstPageResults.append(contentsOf: json?.results ?? [])
     })
   }
 
-  func increasePage() {
+  public func increasePage() {
     self.offset = self.offset + 20
     fetchSongPage()
   }
 
-  func isLastItem(row: Int)  -> Bool {
-    return row == self.firstPageSong.count - 1
+  public func isLastItem(row: Int)  -> Bool {
+    return row == self.firstPageResults.count - 1
   }
+
+  public func getNumberOfRows() -> Int {
+    return firstPageResults.count
+  }
+
+  public func getCellViewModel(at indexPath: IndexPath) -> SongResults {
+    return firstPageResults[indexPath.row]
+  }
+
 }

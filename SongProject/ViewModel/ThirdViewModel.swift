@@ -9,18 +9,36 @@ import UIKit
 
 class ThirdViewModel {
 
-  var dataChanges: ((Bool, Bool) -> Void)?
+  public var dataChanges: ((Bool, Bool) -> Void)?
 
-  var songs: [SongResults] = [] {
+  public var songs: [SongResults] = [] {
     didSet {
       self.dataChanges!(true, false)
     }
   }
 
-  var results: [SongResults] = []
+  public var results: [SongResults] = []
 
-  func songlistData(songs: [SongResults]) {
+  public func songlistData(songs: [SongResults]) {
     self.results = songs
+  }
+
+  // MARK: collectionView helper methods
+
+  public func getNumberOfRows() -> Int {
+    return songs.count
+  }
+
+  public func getCellViewModel(at indexPath: IndexPath) -> SongResults {
+    return songs[indexPath.item]
+  }
+
+  public func getCellWidth(view: UIView) -> CGFloat {
+    return view.frame.size.width/2 - 5
+  }
+
+  public func getCellHeight(view: UIView) -> CGFloat {
+    return view.frame.size.height/2 - 50
   }
 
 }

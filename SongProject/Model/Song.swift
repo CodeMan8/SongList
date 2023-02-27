@@ -1,30 +1,30 @@
-//
-//  Song.swift
-//  SongProject
-//
-//  Created by Bartu on 24.02.2023.
-//
+  //
+  //  Song.swift
+  //  SongProject
+  //
+  //  Created by Bartu on 24.02.2023.
+  //
 
 import UIKit
 
-class Song: Codable {
-
+public class Song: Codable {
+  
   let resultCount: Int
   let results: [SongResults]
-
+  
   required public init(from decoder :Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     results = try values.decode([SongResults].self, forKey: .results)
     resultCount = try values.decode(Int.self, forKey: .resultCount)
   }
-
+  
   enum CodingKeys: String, CodingKey {
     case results = "results"
     case resultCount = "resultCount"
   }
 }
 
-class SongResults: Codable {
+public class SongResults: Codable {
   let trackName: String
   let artistName: String
   let artworkUrl100: String
@@ -32,7 +32,7 @@ class SongResults: Codable {
   let collectionPrice: Double?
   let releaseDate: String?
   let trackId: Int?
-
+  
   required public init(from decoder :Decoder) throws {
     let values = try decoder.container(keyedBy: CodingKeys.self)
     trackName = try values.decode(String.self, forKey: .trackName)
@@ -43,7 +43,7 @@ class SongResults: Codable {
     releaseDate = try values.decode(String.self, forKey: .releaseDate)
     trackId = try values.decodeIfPresent(Int.self, forKey: .trackId)
   }
-
+  
   enum CodingKeys: String, CodingKey {
     case trackName = "trackName"
     case artistName = "artistName"
@@ -52,6 +52,6 @@ class SongResults: Codable {
     case collectionPrice = "collectionPrice"
     case releaseDate = "releaseDate"
     case trackId = "trackId"
-
+    
   }
 }

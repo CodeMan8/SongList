@@ -26,6 +26,7 @@
 		D855375229A947F000333E09 /* Song.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855375129A947F000333E09 /* Song.swift */; };
 		D855375529A9594B00333E09 /* SongTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D855375329A9594B00333E09 /* SongTableViewCell.swift */; };
 		D855375629A9594B00333E09 /* SongTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D855375429A9594B00333E09 /* SongTableViewCell.xib */; };
+		D858B5E029AD0193001ADAC6 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D858B5DF29AD0193001ADAC6 /* Constants.swift */; };
 		D87ED4B229A9F0DE00B2EED1 /* CustomProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D87ED4B129A9F0DE00B2EED1 /* CustomProfileView.xib */; };
 		D87ED4B629A9F1E900B2EED1 /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87ED4B529A9F1E900B2EED1 /* UIViewExtension.swift */; };
 		D87ED4B829A9F6CC00B2EED1 /* CustomProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D87ED4B729A9F6CC00B2EED1 /* CustomProfileView.swift */; };
@@ -62,6 +63,7 @@
 		D855375129A947F000333E09 /* Song.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Song.swift; sourceTree = "<group>"; };
 		D855375329A9594B00333E09 /* SongTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongTableViewCell.swift; sourceTree = "<group>"; };
 		D855375429A9594B00333E09 /* SongTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SongTableViewCell.xib; sourceTree = "<group>"; };
+		D858B5DF29AD0193001ADAC6 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		D87ED4B129A9F0DE00B2EED1 /* CustomProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomProfileView.xib; sourceTree = "<group>"; };
 		D87ED4B529A9F1E900B2EED1 /* UIViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		D87ED4B729A9F6CC00B2EED1 /* CustomProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProfileView.swift; sourceTree = "<group>"; };
@@ -117,13 +119,13 @@
 			children = (
 				D81600ED29A902080077F52D /* AppDelegate.swift */,
 				D81600EF29A902080077F52D /* SceneDelegate.swift */,
+				D858B5DE29AD0183001ADAC6 /* Constants */,
 				D8BFC8AD29AA34DD001D69E0 /* Extensions */,
 				D840D41E29A90DE20095C074 /* Service */,
 				D840D41D29A90DD30095C074 /* ViewModel */,
 				D840D41C29A90DCE0095C074 /* View */,
 				D840D41B29A90DC90095C074 /* Model */,
 				D843BC3B29AACF7D0015B402 /* ViewControllers */,
-				D855374329A911B200333E09 /* TabBarController.swift */,
 				D81600F329A902080077F52D /* Main.storyboard */,
 				D81600F629A9020A0077F52D /* Assets.xcassets */,
 				D81600F829A9020A0077F52D /* LaunchScreen.storyboard */,
@@ -172,24 +174,89 @@
 		D843BC3B29AACF7D0015B402 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				D81600F129A902080077F52D /* HomeSongVc.swift */,
-				D855374729A913AA00333E09 /* SongListResultVc.swift */,
-				D855374929A913D400333E09 /* SongListCollectionVc.swift */,
-				D855374529A9136500333E09 /* EditableSongVc.swift */,
-				D855374F29A943C800333E09 /* DetailPageVc.swift */,
+				D8B6F21D29AC0A7300EC1934 /* Others */,
+				D8B6F21C29AC0A5700EC1934 /* LastTab */,
+				D8B6F21B29AC0A5200EC1934 /* ThirdTab */,
+				D8B6F21A29AC0A4C00EC1934 /* SecondTab */,
+				D8B6F21929AC0A4600EC1934 /* FirstTab */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		D858B5DE29AD0183001ADAC6 /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				D858B5DF29AD0193001ADAC6 /* Constants.swift */,
+			);
+			path = Constants;
 			sourceTree = "<group>";
 		};
 		D87ED4B929A9F72200B2EED1 /* CustomView */ = {
 			isa = PBXGroup;
 			children = (
+				D8B6F21829AC0A2F00EC1934 /* Button */,
+				D8B6F21729AC0A2100EC1934 /* ProfileView */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
+		D8B6F21729AC0A2100EC1934 /* ProfileView */ = {
+			isa = PBXGroup;
+			children = (
 				D87ED4B129A9F0DE00B2EED1 /* CustomProfileView.xib */,
 				D87ED4B729A9F6CC00B2EED1 /* CustomProfileView.swift */,
+			);
+			path = ProfileView;
+			sourceTree = "<group>";
+		};
+		D8B6F21829AC0A2F00EC1934 /* Button */ = {
+			isa = PBXGroup;
+			children = (
 				D87ED4BA29A9F74600B2EED1 /* CustomButton.swift */,
 				D87ED4BC29A9F77E00B2EED1 /* CustomButton.xib */,
 			);
-			path = CustomView;
+			path = Button;
+			sourceTree = "<group>";
+		};
+		D8B6F21929AC0A4600EC1934 /* FirstTab */ = {
+			isa = PBXGroup;
+			children = (
+				D81600F129A902080077F52D /* HomeSongVc.swift */,
+			);
+			path = FirstTab;
+			sourceTree = "<group>";
+		};
+		D8B6F21A29AC0A4C00EC1934 /* SecondTab */ = {
+			isa = PBXGroup;
+			children = (
+				D855374729A913AA00333E09 /* SongListResultVc.swift */,
+			);
+			path = SecondTab;
+			sourceTree = "<group>";
+		};
+		D8B6F21B29AC0A5200EC1934 /* ThirdTab */ = {
+			isa = PBXGroup;
+			children = (
+				D855374929A913D400333E09 /* SongListCollectionVc.swift */,
+			);
+			path = ThirdTab;
+			sourceTree = "<group>";
+		};
+		D8B6F21C29AC0A5700EC1934 /* LastTab */ = {
+			isa = PBXGroup;
+			children = (
+				D855374529A9136500333E09 /* EditableSongVc.swift */,
+			);
+			path = LastTab;
+			sourceTree = "<group>";
+		};
+		D8B6F21D29AC0A7300EC1934 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				D855374329A911B200333E09 /* TabBarController.swift */,
+				D855374F29A943C800333E09 /* DetailPageVc.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		D8BFC8AD29AA34DD001D69E0 /* Extensions */ = {
@@ -360,6 +427,7 @@
 				D8BFC8B229AA5DC8001D69E0 /* SongCollectionCell.swift in Sources */,
 				D81600F229A902080077F52D /* HomeSongVc.swift in Sources */,
 				D855375229A947F000333E09 /* Song.swift in Sources */,
+				D858B5E029AD0193001ADAC6 /* Constants.swift in Sources */,
 				D8B6F21229AB719600EC1934 /* SecondViewModel.swift in Sources */,
 				D855375029A943C800333E09 /* DetailPageVc.swift in Sources */,
 				D855374429A911B200333E09 /* TabBarController.swift in Sources */,

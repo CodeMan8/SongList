@@ -7,28 +7,32 @@
 
 import UIKit
 
-class SecondViewModel {
+public class SecondViewModel {
   var dataChanges: ((Bool, Bool) -> Void)?
 
-  var songs: [SongResults] = [] {
+  public var songs: [SongResults] = [] {
     didSet {
       self.dataChanges!(true, false)
       updateResultNumberText()
     }
   }
-  var resultNumber: String = ""
-  var resultNumberText: String = ""
 
+  public var resultNumberText: String = ""
+  public var results: [SongResults] = []
 
-  var results: [SongResults] = []
-
-  func songlistData(songs: [SongResults], resultNumber: String) {
+  public func songlistData(songs: [SongResults]) {
     self.results = songs
-    self.resultNumber = resultNumber
   }
 
-  func updateResultNumberText() {
+  public func updateResultNumberText() {
     self.resultNumberText = "\(self.songs.count) adet sonuç bulundu"
   }
 
+  public func getNumberOfRows() -> Int {
+    return songs.count
+  }
+
+  public func getCellViewModel(at indexPath: IndexPath) -> SongResults {
+    return songs[indexPath.row]
+  }
 }

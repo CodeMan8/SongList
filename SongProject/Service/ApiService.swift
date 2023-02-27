@@ -1,17 +1,12 @@
-//
-//  ApiService.swift
-//  SongProject
-//
-//  Created by Bartu on 24.02.2023.
-//
+  //
+  //  ApiService.swift
+  //  SongProject
+  //
+  //  Created by Bartu on 24.02.2023.
+  //
 
 import UIKit
 import Alamofire
-
-
-class Constants {
-  static let API  = "https://itunes.apple.com/search?term=jack+johnson"
-}
 
 public typealias Callback<T> = (_: T) -> Void
 
@@ -21,9 +16,13 @@ class ApiService {
 
     AF.request(Constants.API)
       .response { response in
-        completion(response.data!)
-        if response.error != nil {
-          print(response.error!)
+
+        switch response.result {
+        case .failure(let error) :
+          print(error)
+
+        case .success(let value) :
+          completion(value!)
         }
       }
   }
@@ -33,9 +32,13 @@ class ApiService {
 
     AF.request(Constants.API,parameters: params)
       .response { response in
-        completion(response.data!)
-        if response.error != nil {
-          print(response.error!)
+
+        switch response.result {
+        case .failure(let error) :
+          print(error)
+
+        case .success(let value) :
+          completion(value!)
         }
       }
   }

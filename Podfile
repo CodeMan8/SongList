@@ -7,4 +7,6 @@ target 'SongProject' do
 
   # Pods for SongProject
 pod 'Alamofire'
+pod 'Kingfisher', '~> 7.0'
+
 end
