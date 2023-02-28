@@ -12,7 +12,8 @@ https://itunes.apple.com/search?term=jack+johnson
 ### Gereksinimeler
 Projeyi çalıştırmadan önce kütüphaneler aktif edilmeli 
 - pod install 
-Proje dosyalarına diğer branchte ulaşabilirsiniz.
+ 
+Proje dosyalarına diğer branchte ulaşabilirsiniz
 
 ### İçerik
 
