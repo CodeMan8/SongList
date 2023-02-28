@@ -24,7 +24,7 @@ Detay butonu ve üst kısımdaki profil sayfası için custom view oluşturuldu 
 ```
 
 ```
-Servisten gelen response'lar modellendi. İlk sayfa için pagination uygulandı.
+Servisten gelen response'lar modellendi. İlk sayfa için pagination uygulandı. off set ve limit değeri(20) ile ilk servise istek atıldı.
 
 ```
 ```
