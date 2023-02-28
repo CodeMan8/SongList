@@ -22,15 +22,19 @@ Projeyi çalıştırmadan önce kütüphaneler aktif edilmeli
 Detay butonu ve üst kısımdaki profil sayfası için custom view oluşturuldu ve uygulandı.
 
 ```
+
+```
 Servisten gelen response'lar modellendi. İlk sayfa için pagination uygulandı.
 
 ```
-Birinci ve ikinci sekmedeki görünüm için tek bir tableview cell kullanıldı.
+```
 
+Birinci ve ikinci sekmedeki görünüm için tek bir tableview cell kullanıldı.
+```
 ```
 Son sekmedeki silme işlemi için silinen hücre tutuldu ve diğer sayfalarda bu hücrenin konumu bulunarak silme işlemi gerçekleştirildi.
 TrackId değeri aynı olan hücreyi diğer tablolardanda kaldırmış olduk.
-
+```
 
 ## Kullanılan kütüphaneler
 
